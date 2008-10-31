@@ -16,8 +16,7 @@ module Treetop
         prepare_to_parse(input)
         @index = options[:index] if options[:index]
         result = send("_nt_#{root}")
-        return nil if (consume_all_input? && index != input.size)
-        result
+        (consume_all_input? && index != input.size) ? nil : result
       end
 
       def failure_index
@@ -33,7 +32,9 @@ module Treetop
       end
 
       def failure_reason
-        return nil unless (tf = terminal_failures) && tf.size > 0
+        unless (tf = terminal_failures) && tf.size > 0
+          nil
+        else
 	"Expected " +
 	  (tf.size == 1 ?
 	   tf[0].expected_string :
@@ -41,6 +42,7 @@ module Treetop
 	  ) +
           " at line #{failure_line}, column #{failure_column} (byte #{failure_index+1})" +
           " after #{input[index...failure_index]}"
+        end
       end
 
 
