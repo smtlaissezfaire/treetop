@@ -1,0 +1,5 @@
+      user     system      total        real
+RANGE for loop, 20000000 times  2.440000   0.010000   2.450000 (  2.563289)
+RANGE each loop, 20000000 times  3.360000   0.020000   3.380000 (  3.501698)
+ARRAY for loop, 20000000 times  2.260000   0.010000   2.270000 (  2.374654)
+ARRAY each loop, 20000000 times  3.330000   0.020000   3.350000 (  3.487662)
