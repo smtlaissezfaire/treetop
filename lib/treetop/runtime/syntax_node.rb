@@ -8,7 +8,7 @@ module Treetop
         @input = input
         @interval = interval
         if @elements = elements
-          elements.each do |element|
+          for element in elements
             element.parent = self
           end
         end
