@@ -17,7 +17,7 @@ module Treetop
         @index = options[:index] if options[:index]
         result = send("_nt_#{root}")
         return nil if (consume_all_input? && index != input.size)
-        return result
+        result
       end
 
       def failure_index
@@ -80,7 +80,7 @@ module Treetop
           @terminal_failures = []
         end
         terminal_failures << TerminalParseFailure.new(index, expected_string)
-        return nil
+        nil
       end
     end
   end
