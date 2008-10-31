@@ -1,0 +1,4 @@
+      user     system      total        real
+returning nil 10000000 with 'return nil'  4.820000   0.040000   4.860000 (  5.439278)
+returning nil 10000000 with 'nil'  3.110000   0.020000   3.130000 (  3.521281)
+returning nil 10000000 with empty last statement  3.040000   0.020000   3.060000 (  3.337829)
