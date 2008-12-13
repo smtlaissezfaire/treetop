@@ -10,12 +10,14 @@ module Treetop
       end
       
       def node_class_name
-        parent_expression && parent_expression.node_class_name || 'SyntaxNode'
+        declared_parent_class_name || 'SyntaxNode'
       end
       
       def declared_module_name
         parent_expression && parent_expression.node_class_name
       end
+
+      alias_method :declared_parent_class_name, :declared_module_name
       
       def inline_module_name
         parent_expression && parent_expression.inline_module_name
