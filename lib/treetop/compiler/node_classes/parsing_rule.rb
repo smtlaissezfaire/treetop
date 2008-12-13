@@ -22,22 +22,25 @@ module Treetop
         builder.method_declaration(method_name) do
           builder.assign 'start_index', 'index'
           builder.assign "node_cache_#{name}", "node_cache[:#{name}]"
-          generate_cache_lookup(builder)
-          builder.newline
-          parsing_expression.compile(expression_address, builder)
-          builder.newline
-          generate_cache_storage(builder, result_var)
-          builder.newline          
-          builder << result_var
+          generate_cache_lookup(builder) do
+            builder.newline
+            parsing_expression.compile(expression_address, builder)
+            builder.newline
+            generate_cache_storage(builder, result_var)
+            builder.newline
+            builder << result_var
+          end
         end
       end
       
-      def generate_cache_lookup(builder)
-        builder.if_ "node_cache_#{name}.has_key?(index)" do
+      def generate_cache_lookup(builder, &blk)
+        builder.if__ "node_cache_#{name}.has_key?(index)" do
           builder.assign 'cached', "node_cache_#{name}[index]"
           builder << '@index = cached.interval.end if cached'
-          builder << 'return cached'
+          builder << 'cached'
         end
+
+        builder.else_(&blk)
       end
       
       def generate_cache_storage(builder, result_var)
