@@ -6,6 +6,22 @@ module Treetop
         super(input, interval, [])
       end
 
+      def terminal?
+        true
+      end
+
+      def nonterminal?
+        false
+      end
+
+      def text_value
+        @input
+      end
+
+      def empty?
+        @emtpy ||= @input.empty?
+      end
+
       def inspect(indent="")
 	indent+
 	  self.class.to_s.sub(/.*:/,'') +
