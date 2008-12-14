@@ -84,6 +84,12 @@ module Treetop
       def break
         self << 'break'
       end
+
+      def begin_end(&block)
+        self << "begin"
+        indented(&block)
+        self << "end"
+      end
       
       def in(depth = 2)
         @level += depth
