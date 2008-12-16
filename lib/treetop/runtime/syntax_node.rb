@@ -31,10 +31,6 @@ module Treetop
       end
 
       def extension_modules
-        local_extensions =
-          class <<self
-            included_modules-Object.included_modules
-          end
         if local_extensions.size > 0
           local_extensions
         else
@@ -66,6 +62,14 @@ module Treetop
               }.join("") :
             ""
           )
+      end
+
+    private
+
+      def local_extensions
+        class << self
+          included_modules-Object.included_modules
+        end
       end
     end
   end
