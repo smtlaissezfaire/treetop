@@ -20,8 +20,9 @@ module Treetop
         result_var = "r#{expression_address}"
         
         builder.method_declaration(method_name) do
-          builder.assign 'start_index', 'index'
-          builder.assign "#{node_cache_name}", "node_cache[:#{name}]"
+          builder.assign 'start_index', '@index'
+          builder.assign "#{node_cache_name}", "@node_cache[:#{name}]"
+
           generate_cache_lookup(builder) do
             builder.newline
             parsing_expression.compile(expression_address, builder)
